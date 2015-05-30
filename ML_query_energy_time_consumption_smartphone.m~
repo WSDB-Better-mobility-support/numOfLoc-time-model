@@ -26,16 +26,17 @@ l = l(1:num_of_exper);
 %plotting
 
 
-figure('Position',[440 378 560 620/3]);
+figure()
 t_mean= mean( t_data_vecs );
 xVal = cell2mat(l);
 t_coefs = polyfit( xVal,t_mean , 1);
 curve = polyval(t_coefs ,xVal);
-t_p = plot(xVal , t_data_vecs , 'ro' , xVal , curve);
+t_p = plot(xVal , t_data_vecs , 'r*' , xVal , curve);
 box on
 xlabel('Number of queries per one request');
 ylabel('Time (sec)');
-set(gca , 'YTick' , [0:2: t_max_data]);
+set(gca , 'YTick' , [0:1: t_max_data]);
 
-set(gca,'FontSize',16)
+set(findobj(gca,'Type','text'),'FontSize',16)
+set(findobj('type','axes'),'fontsize',16)
 set(t_p,'LineWidth',1.5);
