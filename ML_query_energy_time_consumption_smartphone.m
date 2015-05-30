@@ -12,7 +12,7 @@ m = load('data.txt');
 e = m(:,4); % Extract only the energy column
 t = m(:,2); % Extract only the time column
 t = t/1000; % convert from milliseconds to seconds
-% Each location was queried 10 times
+% Each location was queried 20 times
 col_len = input('Please enter the number of query per one experiment : ');
 num_of_exper = length(e) / col_len;
 e_data_vecs = reshape(e  , [col_len , num_of_exper]);
@@ -31,11 +31,11 @@ t_mean= mean( t_data_vecs );
 xVal = cell2mat(l);
 t_coefs = polyfit( xVal,t_mean , 1);
 curve = polyval(t_coefs ,xVal);
-t_p = plot(xVal , t_data_vecs , 'ro' , xVal , curve);
+t_p = plot(xVal , t_data_vecs , 'r.' , xVal , curve);
 box on
 xlabel('Number of queries per one request');
 ylabel('Time (sec)');
 set(gca , 'YTick' , [0:2: t_max_data]);
 
 set(gca,'FontSize',16)
-set(t_p,'LineWidth',1.5);
+set(t_p,'LineWidth',3);
